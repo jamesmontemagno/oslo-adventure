@@ -18,4 +18,4 @@ The site is designed for GitHub Pages. A workflow in `.github/workflows/pages.ym
 
 ## Image credits
 
-The supplied assets are listed in `Assets/manifest.json` with their source pages. The public footer links to the manifest so source and licensing information remains discoverable. Review the current license and attribution requirements on every source page before redistributing the images outside this demo.
+The supplied assets are listed in `assets/manifest.json` with their source pages. The public footer links to the manifest so source and licensing information remains discoverable. Review the current license and attribution requirements on every source page before redistributing the images outside this demo.

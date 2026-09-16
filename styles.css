@@ -192,7 +192,7 @@ button {
   inset: 0;
   background:
     linear-gradient(180deg, rgba(8, 38, 54, 0.18), rgba(8, 38, 54, 0.2)),
-    url("Assets/oslo-panorama.jpg") center / cover;
+    url("assets/oslo-panorama.jpg") center / cover;
   transform: scale(1.04);
   animation: panorama-drift 16s ease-out both;
 }
