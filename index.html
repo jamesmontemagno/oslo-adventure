@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f3d57" />
+    <meta
+      name="description"
+      content="Oslo Adventure is a local-feeling day planner for coffee, culture, and sauna by the fjord."
+    />
+    <title>Oslo Adventure — a day worth remembering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!--
+      THESIS: Oslo Adventure turns a directory into a day-shaped field note: a route you can see, edit, and remember.
+      OWN-WORLD: Glacier paper, fjord blue, sea-glass mint, and saffron wayfinding marks; photos sit inside crisp atlas frames.
+      STORY: Pick a mood, read the city as a route, and pin the few places that make the day feel like yours.
+      FIRST VIEWPORT: A panorama-led opening flows directly into a split library/map workspace; “Start planning” is the first action.
+      FORM: Spatial planner with a pinned route strip; it refuses the standard hero-then-card-grid by putting geography and commitment side by side.
+    -->
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Oslo Adventure home">
+        <span class="wordmark-mark" aria-hidden="true">O</span>
+        <span>Oslo<br /><em>Adventure</em></span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#planner">Build a day</a>
+        <a href="#rituals">Local order</a>
+      </nav>
+      <div class="header-meta">
+        <span class="weather-dot" aria-hidden="true"></span>
+        <span>Oslo, Norway</span>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-image" role="img" aria-label="A wide panorama of Oslo and the fjord"></div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="hero-kicker">A local way to spend a Saturday</p>
+          <h1 id="hero-title">See Oslo in a day worth remembering.</h1>
+          <p class="hero-copy">
+            Coffee while the city is still quiet. A little culture. Then heat, salt, and the fjord.
+          </p>
+          <a class="button button-light" href="#planner">
+            Start planning
+            <span aria-hidden="true">↘</span>
+          </a>
+        </div>
+        <div class="hero-note">
+          <span class="note-line"></span>
+          <div>
+            <strong>Today’s point of view</strong>
+            <p>Keep the morning close to the water. Let the afternoon wander.</p>
+          </div>
+        </div>
+        <div class="hero-caption">
+          <span>59°54′N 10°45′E</span>
+          <span>01 / 04 — Oslo from above</span>
+        </div>
+      </section>
+
+      <section class="intro section-shell" aria-labelledby="planner-heading">
+        <div class="intro-copy">
+          <p class="eyebrow">The Oslo edit</p>
+          <h2 id="planner-heading">Your day, with a little room to wander.</h2>
+        </div>
+        <div class="intro-aside">
+          <p>
+            A short list of places I’d send a friend. Browse by feeling, then pin the stops that make your
+            version of Oslo.
+          </p>
+          <span class="rule-note">17 places · 3 kinds of good</span>
+        </div>
+      </section>
+
+      <section class="planner section-shell" id="planner" aria-label="Oslo day planner">
+        <div class="planner-topline">
+          <div class="section-label">
+            <span class="label-index">01</span>
+            <span>Choose your stops</span>
+          </div>
+          <div class="planner-status" aria-live="polite">
+            <span class="status-pip" aria-hidden="true"></span>
+            <span id="result-count">17 places in the edit</span>
+          </div>
+        </div>
+
+        <div class="planner-grid">
+          <div class="library">
+            <div class="library-toolbar">
+              <div class="filter-row" role="group" aria-label="Filter places">
+                <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">
+                  All <span>17</span>
+                </button>
+                <button class="filter-button" type="button" data-filter="coffee" aria-pressed="false">
+                  Coffee <span>7</span>
+                </button>
+                <button class="filter-button" type="button" data-filter="attraction" aria-pressed="false">
+                  Places <span>5</span>
+                </button>
+                <button class="filter-button" type="button" data-filter="sauna" aria-pressed="false">
+                  Sauna <span>5</span>
+                </button>
+              </div>
+              <label class="search-field">
+                <span class="sr-only">Search Oslo places</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="6.5"></circle>
+                  <path d="m16 16 5 5"></path>
+                </svg>
+                <input id="search-input" type="search" placeholder="Search the edit" autocomplete="off" />
+              </label>
+            </div>
+            <div class="place-list" id="place-list" aria-live="polite"></div>
+            <div class="empty-state" id="empty-state" hidden>
+              <span class="empty-symbol">⌁</span>
+              <h3>That stop is still off the map.</h3>
+              <p>Try a different word or clear your search.</p>
+              <button class="text-button" type="button" id="clear-search">Clear search</button>
+            </div>
+          </div>
+
+          <div class="map-column">
+            <div class="map-frame">
+              <div class="map-heading">
+                <div>
+                  <span class="map-eyebrow">The shape of your day</span>
+                  <h3>Follow the blue line.</h3>
+                </div>
+                <button class="map-reset" type="button" id="reset-map" aria-label="Reset map view">Reset view ↗</button>
+              </div>
+              <div class="map-canvas" id="map-canvas">
+                <div class="map-water" aria-hidden="true"></div>
+                <div class="map-contours" aria-hidden="true"></div>
+                <div class="map-roads" aria-hidden="true">
+                  <span class="road road-a"></span>
+                  <span class="road road-b"></span>
+                  <span class="road road-c"></span>
+                  <span class="road road-d"></span>
+                  <span class="road road-e"></span>
+                </div>
+                <svg class="route-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <path id="route-path" d="M 19 73 C 29 57, 41 74, 55 55 S 75 42, 82 20"></path>
+                </svg>
+                <div class="map-label label-grunerlokka">GRÜNERLØKKA</div>
+                <div class="map-label label-sentrum">SENTRUM</div>
+                <div class="map-label label-frogner">FROGNER</div>
+                <div class="map-label label-fjord">THE FJORD</div>
+                <div class="map-compass" aria-hidden="true">
+                  <span>N</span>
+                  <i></i>
+                </div>
+                <div class="map-markers" id="map-markers"></div>
+                <div class="map-legend"><span class="legend-line"></span> Oslo, slowly</div>
+              </div>
+              <div class="map-footnote">
+                <span>Map view is a local’s sketch, not a navigation app.</span>
+                <span id="selected-coordinates">Choose a stop to inspect it.</span>
+              </div>
+            </div>
+            <div class="place-detail" id="place-detail" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="day-plan" aria-labelledby="day-plan-heading">
+          <div class="day-plan-header">
+            <div>
+              <span class="map-eyebrow">Your day in progress</span>
+              <h3 id="day-plan-heading">A good order of things.</h3>
+            </div>
+            <div class="day-actions">
+              <button class="text-button" id="clear-day" type="button">Clear day</button>
+              <button class="button button-dark button-small" id="share-plan" type="button">
+                Copy day link <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </div>
+          <div class="day-slots" id="day-slots"></div>
+        </div>
+      </section>
+
+      <section class="rituals section-shell" id="rituals" aria-labelledby="rituals-heading">
+        <div class="rituals-heading">
+          <div>
+            <p class="eyebrow">The local order</p>
+            <h2 id="rituals-heading">Three moves that make Oslo click.</h2>
+          </div>
+          <p>Not a checklist. More like a rhythm.</p>
+        </div>
+        <div class="ritual-grid">
+          <article class="ritual-card ritual-card-coffee">
+            <img src="Assets/tim-wendelboe.jpg" alt="A close view inside Tim Wendelboe coffee shop" loading="lazy" />
+            <div class="ritual-card-overlay">
+              <span>Move 01</span>
+              <h3>Start with a small cup.</h3>
+              <p>The city is softer before 10.</p>
+            </div>
+          </article>
+          <article class="ritual-card ritual-card-city">
+            <img src="Assets/oslo-opera-house.jpg" alt="The Oslo Opera House meeting the water" loading="lazy" />
+            <div class="ritual-card-overlay">
+              <span>Move 02</span>
+              <h3>Let the water choose the turn.</h3>
+              <p>Culture is better with a little air around it.</p>
+            </div>
+          </article>
+          <article class="ritual-card ritual-card-sauna">
+            <img src="Assets/oslo-fjord-sauna.jpg" alt="A sauna floating in the Oslo fjord" loading="lazy" />
+            <div class="ritual-card-overlay">
+              <span>Move 03</span>
+              <h3>End warm, then brave.</h3>
+              <p>There is always time for one last swim.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <div class="footer-main">
+        <a class="wordmark wordmark-footer" href="#top" aria-label="Back to top">
+          <span class="wordmark-mark" aria-hidden="true">O</span>
+          <span>Oslo<br /><em>Adventure</em></span>
+        </a>
+        <p>Made for friends who want to see the city the long way round.</p>
+        <a class="footer-top" href="#top">Back to top ↑</a>
+      </div>
+      <div class="footer-meta">
+        <span>Oslo, Norway · 59°54′N 10°45′E</span>
+        <a href="Assets/manifest.json">Image credits &amp; source links</a>
+        <span>Built with a little local bias.</span>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
